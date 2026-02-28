@@ -1,0 +1,22 @@
+# Web Framework
+fastapi>=0.109.0  # 고성능 비동기 웹 프레임워크
+uvicorn[standard]>=0.27.0  # ASGI 서버 (FastAPI 실행용)
+
+# LLM & LangChain Ecosystem
+langchain>=0.1.0  # LLM 애플리케이션 구축을 위한 프레임워크
+langchain-community>=0.0.10  # LangChain 커뮤니티 통합 모듈 (ChatOllama 등 포함)
+
+# Database (PostgreSQL)
+sqlalchemy>=2.0.0  # Python SQL 툴킷 및 ORM
+psycopg2-binary>=2.9.0  # PostgreSQL 데이터베이스 어댑터
+
+# Search Engine (ElasticSearch)
+elasticsearch>=8.12.0  # ElasticSearch 공식 클라이언트
+
+# Cache & Message Broker
+redis>=5.0.0  # Redis 클라이언트 (캐싱 및 락 구현용)
+
+# Utilities
+pydantic>=2.6.0  # 데이터 검증 및 설정 관리
+requests>=2.31.0  # HTTP 요청 라이브러리
+python-multipart>=0.0.9  # 파일 업로드 등 폼 데이터 처리 (FastAPI 의존성)
