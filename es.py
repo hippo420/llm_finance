@@ -5,10 +5,19 @@ def create_es_client():
     config = Config()
     es_config = config.get_es_config()
 
-    es_client = Elasticsearch(
-        cloud_id=es_config.get('cloud_id'),
-        api_key=es_config.get('api_key')
-    )
+    host = es_config.get('host', 'localhost')
+    port = es_config.get('port', '9200')
+    scheme = es_config.get('scheme', 'http')
+    user = es_config.get('user')
+    password = es_config.get('password')
+
+    url = f"{scheme}://{host}:{port}"
+
+    if user and password:
+        es_client = Elasticsearch(url, basic_auth=(user, password))
+    else:
+        es_client = Elasticsearch(url)
+
     return es_client
 
 if __name__ == '__main__':

@@ -7,8 +7,8 @@
 ## 🚀 주요 기능
 
 - **멀티 소스 RAG (Multi-Source RAG)**
-  - **Postgres**: 시세, 수급 등 정형 데이터 조회 (Mock 구현)
-  - **ElasticSearch**: 증권사 리포트 및 뉴스 검색 (Mock 구현)
+  - **Postgres**: 시세, 수급 등 정형 데이터 조회
+  - **ElasticSearch**: 증권사 리포트 및 뉴스 검색
   - `LangChain`의 `RunnableParallel`을 사용하여 3가지 소스를 병렬로 검색
 
 - **고성능 캐싱 시스템 (Redis)**
@@ -30,12 +30,16 @@ llm_finance/
 │   ├── api/            # API 엔드포인트 (v1)
 │   ├── chains/         # LangChain RAG 파이프라인 구성
 │   ├── infra/          # Redis 등 인프라 설정
-│   ├── llm/            # LLM 모델 설정 (Qwen/Ollama)
+│   ├── config.py       # 설정 파일 로더
+│   ├── db.py           # PostgreSQL 연결 관리
+│   ├── es.py           # ElasticSearch 연결 관리
+│   ├── llm.py          # LLM 모델 설정 (Qwen/Ollama)
 │   ├── prompts/        # 프롬프트 템플릿 관리
 │   ├── retrievers/     # 데이터 검색 모듈 (Postgres, ES)
 │   ├── schemas/        # Pydantic 데이터 모델
 │   ├── utils/          # 유틸리티 (캐시 키 생성, 문서 병합)
 │   └── main.py         # FastAPI 진입점
+├── config.ini          # 프로젝트 설정 파일 (DB, ES, LLM)
 └── README.md
 ```
 
