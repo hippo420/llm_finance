@@ -5,9 +5,9 @@ def load_llm():
     config = Config()
     llm_config = config.get_llm_config()
 
-    model_name = llm_config.get("model_name", "qwen:7b")
-    temperature = float(llm_config.get("temperature", 0.7))
-    base_url = llm_config.get("base_url", "http://localhost:11434")
+    model_name = llm_config["model_name"]
+    temperature = float(llm_config["temperature"])
+    base_url = llm_config["base_url"]
 
     print(f"Loading LLM: {model_name} at {base_url} with temperature {temperature}")
 

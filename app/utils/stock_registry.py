@@ -8,13 +8,14 @@ class StockRegistry:
         self.alias_map: Dict[str, str] = {}
 
     def load(self):
+        print("Loading stock registry...")
         """
         앱 기동 시 1회 호출
         stock_alias 테이블을 전부 메모리에 적재
         """
         sql = text("""
-            SELECT LOWER(alias) AS alias, stock_code
-            FROM stock_alias
+            SELECT isu_srt_cd AS 종목코드, isu_abbrv AS 종목명
+            FROM info_stock
         """)
 
         session = SessionLocal()

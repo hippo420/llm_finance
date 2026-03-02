@@ -1,12 +1,20 @@
 from sqlalchemy import create_engine, text
+from sqlalchemy.engine import URL
 from app.config import Config
 
 def create_db_engine():
     config = Config()
     db_config = config.get_db_config()
     
-    DATABASE_URL = f"postgresql://{db_config['user']}:{db_config['password']}@{db_config['host']}:{db_config['port']}/{db_config['database']}"
-    engine = create_engine(DATABASE_URL)
+    url_object = URL.create(
+        "postgresql",
+        username=db_config['user'],
+        password=db_config['password'],
+        host=db_config['host'],
+        port=int(db_config['port']),
+        database=db_config['database']
+    )
+    engine = create_engine(url_object)
     return engine
 
 if __name__ == '__main__':

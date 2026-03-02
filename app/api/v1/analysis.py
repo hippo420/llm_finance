@@ -23,16 +23,16 @@ async def analyze(request: AnalysisRequest):
     cache_key = make_cache_key(query)
     lock_key = f"lock:{cache_key}"
 
-    # 1️⃣ 캐시 HIT
+    # 캐시 HIT
     cached = redis_client.get(cache_key)
     if cached:
         return AnalysisResponse(answer=cached)
 
-    # 2️⃣ Lock 시도 (SETNX)
+    # Lock 시도 (SETNX)
     acquired = redis_client.set(lock_key, "1", nx=True, ex=LOCK_TTL)
 
     if acquired:
-        # ✅ 내가 LLM 호출 담당
+        #내가 LLM 호출 담당
         try:
             result = rag_chain.invoke(query)
 
@@ -47,7 +47,7 @@ async def analyze(request: AnalysisRequest):
             redis_client.delete(lock_key)
 
     else:
-        # ⏳ 다른 요청이 처리 중 → 결과 대기
+        #다른 요청이 처리 중 → 결과 대기
         wait_time = 0.0
 
         while wait_time < LOCK_TTL:
